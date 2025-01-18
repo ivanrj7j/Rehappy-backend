@@ -6,6 +6,7 @@ import os
 # importing packages 
 
 from src.blueprints import userBlueprint
+from src.blueprints import communityBluerpint
 # importing blueprints 
 
 load_dotenv()
@@ -19,6 +20,7 @@ cors = CORS(app)
 
 
 app.register_blueprint(userBlueprint)
+app.register_blueprint(communityBluerpint)
 # blueprints 
 
 if __name__ == '__main__':

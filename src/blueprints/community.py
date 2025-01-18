@@ -15,8 +15,6 @@ def create_community():
 
     community = Community(name, communityCollection, usersCollection, db)
     
-    community.validate()
-    
     try:
         community.create(admin)
         return {"message": "Community created successfully"}, 201

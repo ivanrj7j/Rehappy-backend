@@ -27,13 +27,17 @@ class Community:
     def create(self, admin:str):
         user = User(admin, self.users)
 
-        user.validate
+        user.validate()
         user.validationCheck()
+
+        self.validate()
+        if self.validated:
+            raise CommunityValidationError("Community already exists")
 
         community = {
             "name": self.name,
             "admin": admin,
-            "members": [],
+            "members": [admin],
         }
 
         self.community.insert_one(community)
