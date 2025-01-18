@@ -19,8 +19,11 @@ class User:
             raise ValidationError("The user is not validated")
         
     def register(self, password:str) -> bool:
+        self.validate()
+        # validating the user 
+
         if self.validated:
-            raise ValidationError("The user is already validated")
+            raise ValidationError("The user is already registered")
         
         result = self.collection.insert_one({
             "username": self.username,

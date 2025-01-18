@@ -5,15 +5,20 @@ from dotenv import load_dotenv
 import os
 # importing packages 
 
+from src.blueprints import userBlueprint
+# importing blueprints 
+
 load_dotenv()
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
 socket = SocketIO(app)
-cors = CORS(socket)
+cors = CORS(app)
 # configuring application 
 
 
+
+app.register_blueprint(userBlueprint)
 # blueprints 
 
 if __name__ == '__main__':

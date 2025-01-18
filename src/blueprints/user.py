@@ -20,7 +20,7 @@ userBlueprint = Blueprint("user", __name__)
 
 
 @noLoginRequried
-@userBlueprint.route('/createUser', methods=['POST'])
+@userBlueprint.route('/register', methods=['POST'])
 def createUser():
     data = request.get_json()
 
@@ -65,7 +65,6 @@ def logout():
 @loginRequried
 @userBlueprint.route('/deleteUser', methods=['PUT'])
 def deleteuser():
-    data = request.get_json()
     username = session['username']
 
     user = User(username, usersCollection)
