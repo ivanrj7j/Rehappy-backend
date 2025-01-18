@@ -10,7 +10,7 @@ from ..models import User
 from ..collections import usersCollection
 # collections 
 
-from ..misc.exceptions import ValidationError
+from ..misc.exceptions import UserValidationError
 from ..misc.utils import loginRequried, noLoginRequried
 # misc
 
@@ -33,7 +33,7 @@ def createUser():
         user.register(password)
         session['username'] = username
         return {"message": "User created successfully"}, 201
-    except ValidationError:
+    except UserValidationError:
         return {"message": "Invalid username or password"}, 400
     
 @noLoginRequried
@@ -52,7 +52,7 @@ def login():
 
         return {"message": "User logged in successfully"}, 200
     
-    except ValidationError:
+    except UserValidationError:
         return {"message": "Invalid username or password"}, 401
     
 @loginRequried
@@ -71,7 +71,7 @@ def deleteuser():
     try:
         user.deleteUser()
         return {"message": "User deleted successfully"}, 200
-    except ValidationError:
+    except UserValidationError:
         return {"message": "Invalid username"}, 400
     
 @loginRequried
@@ -87,5 +87,5 @@ def updateUser():
     try:
         user.changePassword(oldPassword, newPassword)
         return {"message": "User password updated successfully"}, 200
-    except ValidationError:
+    except UserValidationError:
         return {"message": "Invalid username or password"}, 400

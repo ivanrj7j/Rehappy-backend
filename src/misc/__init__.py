@@ -1,2 +1,2 @@
-from .exceptions import ValidationError
+from .exceptions import UserValidationError
 
