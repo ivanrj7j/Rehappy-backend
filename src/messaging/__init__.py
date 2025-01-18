@@ -21,20 +21,20 @@ def handleUserJoin(data):
 
     if not community.validated:
         print("Invalid Community!")
-        emit("invalid_community", {"community": community.name}, to=request.sid)
+        emit("invalid_community", {"community": community.name}, broadcast=True)
         # disconnect()
         return
     
     if not community.validateUser(username):
         print("Invalid User!")
-        emit("invalid_user", {"user": username}, to=request.sid)
+        emit("invalid_user", {"user": username}, broadcast=True)
         # disconnect()
         return
 
     join_room(community)
     print(f"User {username} joined!")
     
-    emit("user_connected", {"user": username}, to=community)
+    emit("user_connected", {"user": username}, broadcast=True)
 
 @socket.on("message")
 def handleSendMessage(data):
